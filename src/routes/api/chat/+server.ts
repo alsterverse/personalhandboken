@@ -24,23 +24,8 @@ const pineconeIndex = pinecone.Index("sample-movies");
 
 // const docs = [
 //   new Document({
-//     metadata: { foo: "bar" },
-//     pageContent: "Jim likes to run and he is a good swimmer",
-//   }),
-//   new Document({
-//     metadata: { foo: "bar" },
-//     pageContent: "Johanna likes to run too and she also likes to swim",
-//   }),
-//   new Document({
-//     metadata: { baz: "qux" },
-//     pageContent: "John likes to run too and he also likes to swim and bike",
-//   }),
-//   new Document({
-//     metadata: { baz: "qux" },
-//     pageContent:
-//       "Viktor likes to run too and he also likes to swim and bike and play basketball",
-//   }),
-// ];
+//     pageContent: `The quick brown fox jumps over the lazy dog`,
+//   })]
 
 // Create an OpenAI API client
 const openai = new OpenAI({
@@ -57,46 +42,40 @@ export const POST = (async ({ request }) => {
   //   }
   // );
 
-  const vectorStore = await PineconeStore.fromExistingIndex(
-    new OpenAIEmbeddings({ openAIApiKey: env.OPENAI_API_KEY }),
-    { pineconeIndex }
-  );
+  // const vectorStore = await PineconeStore.fromExistingIndex(
+  //   new OpenAIEmbeddings({ openAIApiKey: env.OPENAI_API_KEY }),
+  //   { pineconeIndex }
+  // );
 
   // Extract the `prompt` from the body of the request
   const { messages } = await request.json();
 
   // Search the vector DB independently with the latest message
   const latestMessage = messages[messages.length - 1];
-  const results = await vectorStore.similaritySearch(latestMessage.content, 1);
+  //const results = await vectorStore.similaritySearch(latestMessage.content, 1);
 
-  const searchResult = results[0]?.pageContent;
+  const searchResult = `Add the search result here`;
 
-  const query = `Use the below article to help answer questions if needed"
+  const query = `Använd denna information för att svara på frågan
 
-      Article:
+      Information:
       ${searchResult}
 
-      Question: ${latestMessage.content}?`;
+      Fråga: ${latestMessage.content}?`;
 
   // Ask OpenAI for a streaming chat completion given the prompt
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     stream: true,
     messages: [
-      { role: "system", content: "You answer questions about training" },
+      {
+        role: "system",
+        content:
+          "Svara på frågor om företaget Alster, baserat på din information.",
+      },
       { role: "user", content: query },
     ],
   });
-  // const response = await openai.chat.completions.create({
-  //   model: "gpt-3.5-turbo",
-  //   stream: true,
-  //   messages: messages.map((message: any) => ({
-  //     content: ` ${searchResult}
-
-  //     Question: ${message.content}`,
-  //     role: message.role,
-  //   })),
-  // });
 
   // Convert the response into a friendly text-stream
   const stream = OpenAIStream(response);

@@ -5,12 +5,12 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
-  <meta name="description" content="ai bot" />
+  <title>Hem</title>
+  <meta name="description" content="ai chatbot" />
 </svelte:head>
 
 <section>
-  <h1>jims chatbot</h1>
+  <h1>personalhandboken</h1>
   <ul>
     {#each $messages as message}
       <li>{message.role}: {message.content}</li>
@@ -18,7 +18,7 @@
   </ul>
   <form on:submit={handleSubmit}>
     <input bind:value={$input} />
-    <button type="submit">Send</button>
+    <button type="submit">Skicka</button>
   </form>
 </section>
 
