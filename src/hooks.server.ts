@@ -3,7 +3,6 @@ import type { Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
   // Apply CORS header for API routes
-  console.log(event.url.pathname);
   if (event.url.pathname.startsWith("/api")) {
     // Required for CORS to work
     if (event.request.method === "OPTIONS") {
