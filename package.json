@@ -10,12 +10,11 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "dependencies": {
-    "@langchain/openai": "^0.0.28",
-    "@langchain/pinecone": "^0.0.4",
-    "@pinecone-database/pinecone": "^2.2.0",
+
     "ai": "latest",
-    "openai": "4.16.1",
-    "storyblok-js-client": "^6.7.1"
+    "googleapis": "^134.0.0",
+    "mammoth": "^1.7.1",
+    "openai": "4.16.1"
   },
   "devDependencies": {
     "@fontsource/fira-mono": "^4.5.10",

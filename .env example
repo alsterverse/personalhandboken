@@ -1,0 +1,4 @@
+OPENAI_API_KEY=api key from openai
+GOOGLE_DRIVE_AUTH=api key from google drive
+GOOGLE_DRIVE_FILE_ID=file to download from google drive, share access with the email in GOOGLE_CREDENTIALS
+GOOGLE_CREDENTIALS=json jwt token from google drive service account, saved as string
