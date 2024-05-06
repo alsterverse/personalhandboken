@@ -1,4 +1,4 @@
-function parseRequestBody(stringBody, contentType) {
+export function parseRequestBody(stringBody, contentType) {
     try {
         if (!stringBody) {
             return "";
@@ -22,7 +22,7 @@ function parseRequestBody(stringBody, contentType) {
     }
 }
 
-function generateReceiverEvent(payload) {
+export function generateReceiverEvent(payload) {
     return {
         body: payload,
         ack: async (response) => {
@@ -34,13 +34,9 @@ function generateReceiverEvent(payload) {
     };
 }
 
-function isUrlVerificationRequest(payload) {
+export function isUrlVerificationRequest(payload) {
     if (payload && payload.type && payload.type === "url_verification") {
         return true;
     }
     return false;
 }
-
-exports.parseRequestBody = parseRequestBody;
-exports.generateReceiverEvent = generateReceiverEvent;
-exports.isUrlVerificationRequest = isUrlVerificationRequest;
