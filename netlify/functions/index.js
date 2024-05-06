@@ -20,8 +20,24 @@ const app = new App({
     receiver: expressReceiver
 });
 
-app.message(async ({ say }) => {
-    await say("Hello, world!");
+app.message(async ({ message, say }) => {
+    try {
+      let text = message.text
+      const res = await fetch(process.env.CHAT_URL, {
+            method: 'POST',
+            body: JSON.stringify(
+                {"messages": [{"content": text}]}
+            )
+        })
+        
+        const answer = await res.text()
+
+        say(answer)
+   
+    } catch (error) {
+      console.log("err")
+      console.error(error);
+    }
 });
 
 exports.handler = async (event, context) => {
