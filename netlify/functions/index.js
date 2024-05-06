@@ -1,11 +1,11 @@
 
-const { App, ExpressReceiver } = require("@slack/bolt");
-const dotenv = require("dotenv");
-const {
+import { App, ExpressReceiver } from "@slack/bolt";
+import dotenv from "dotenv";
+import {
     parseRequestBody,
     generateReceiverEvent,
     isUrlVerificationRequest
-} = require("../utils");
+} from  "../utils";
 
 dotenv.config();
 
