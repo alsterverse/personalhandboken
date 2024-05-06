@@ -3,44 +3,37 @@
 </script>
 
 <div class="app">
+  <img src="logo.png" alt="Logo" class="logo" />
   <main>
     <slot />
   </main>
-
-  <footer>
-    <p></p>
-  </footer>
 </div>
 
 <style>
   .app {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     min-height: 100vh;
+    background-color: #0f1217;
+    color: white;
+    text-align: left;
+  }
+
+  .logo {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 120px;
   }
 
   main {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    width: 100%;
-    max-width: 64rem;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-
-  footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-  }
-
-  @media (min-width: 480px) {
-    footer {
-      padding: 12px 0;
-    }
+    justify-content: flex-start;
+    padding-top: 200px;
+    padding-left: 100px;
+    padding-right: 100px;
+    line-height: 140%;
   }
 </style>
