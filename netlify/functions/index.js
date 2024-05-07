@@ -58,6 +58,7 @@ exports.handler = async (event, context) => {
     await app.processEvent(slackEvent);
 
     return {
+        "x-slack-no-retry": 1,
         statusCode: 200,
         body: "body"
     };
