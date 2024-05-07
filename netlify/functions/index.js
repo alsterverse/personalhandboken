@@ -6,6 +6,7 @@ import {
     generateReceiverEvent,
     isUrlVerificationRequest
 } from  "../utils";
+import { getOpenAiResponse } from "../../src/lib/openai";
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ const app = new App({
 app.message(async ({ message, say }) => {
     try {
       let text = message.text
+
+      text = getOpenAiResponse("text")
     //   const res = await fetch(process.env.CHAT_URL, {
     //         method: 'POST',
     //         body: JSON.stringify(
@@ -32,7 +35,7 @@ app.message(async ({ message, say }) => {
         
     //     const answer = await res.text()
 
-        say("answer")
+        say(text)
    
     } catch (error) {
       console.log("err")
