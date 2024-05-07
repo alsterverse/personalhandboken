@@ -6,7 +6,7 @@ import {
     generateReceiverEvent,
     isUrlVerificationRequest
 } from  "../utils";
-import { getOpenAiResponse } from "../openai";
+import { getOpenAiResponse } from "../utils";
 
 dotenv.config();
 
