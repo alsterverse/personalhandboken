@@ -25,7 +25,7 @@ app.message(async ({ message, say }) => {
     try {
       let text = message.text
 
-      text = getOpenAiResponse("text")
+      text = await getOpenAiResponse("text")
     //   const res = await fetch(process.env.CHAT_URL, {
     //         method: 'POST',
     //         body: JSON.stringify(
