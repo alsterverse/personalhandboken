@@ -23,19 +23,18 @@ const app = new App({
 app.message(async ({ message, say }) => {
     try {
       let text = message.text
-    //   const res = await fetch(process.env.CHAT_URL, {
-    //         method: 'POST',
-    //         body: JSON.stringify(
-    //             {"messages": [{"content": text}]}
-    //         )
-    //     })
+      const res = await fetch(process.env.CHAT_URL, {
+            method: 'POST',
+            body: JSON.stringify(
+                {"messages": [{"content": text}]}
+            )
+        })
         
-    //     const answer = await res.text()
+        const answer = await res.text()
 
-        say(text)
+        say(answer)
    
     } catch (error) {
-      console.log("err")
       console.error(error);
     }
 });
@@ -54,7 +53,6 @@ exports.handler = async (event, context) => {
     await app.processEvent(slackEvent);
 
     return {
-        "x-slack-no-retry": 1,
         statusCode: 200,
         body: "body"
     };

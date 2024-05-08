@@ -40,7 +40,3 @@ export function isUrlVerificationRequest(payload) {
     }
     return false;
 }
-
-export function getOpenAiResponse(text) {
-    return text
-}
